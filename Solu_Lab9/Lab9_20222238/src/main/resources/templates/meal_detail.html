@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TELEMEAL - Detalle de Comida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">TELEMEAL</h2>
+    <div th:if="${meal != null}">
+        <div class="card mb-3">
+            <img th:src="${meal.strMealThumb}" class="card-img-top" style="max-width: 400px; margin: 0 auto;" th:alt="${meal.strMeal}">
+            <div class="card-body">
+                <h3 th:text="${meal.strMeal}"></h3>
+                <p><strong>Category:</strong> <span th:text="${meal.strCategory}"></span></p>
+                <p><strong>Area:</strong> <span th:text="${meal.strArea}"></span></p>
+                <p><strong>Tags:</strong> <span th:text="${meal.strTags}"></span></p>
+                <p><strong>Instructions:</strong> <span th:text="${meal.strInstructions}"></span></p>
+                <!-- Aquí puedes agregar ingredientes si los agregas al DTO -->
+            </div>
+        </div>
+    </div>
+    <div th:if="${meal == null}">
+        <p class="text-center">No se encontró la comida.</p>
+    </div>
+</div>
+</body>
+</html>
