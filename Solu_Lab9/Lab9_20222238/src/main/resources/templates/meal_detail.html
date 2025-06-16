@@ -18,6 +18,20 @@
                 <p><strong>Tags:</strong> <span th:text="${meal.strTags}"></span></p>
                 <p><strong>Instructions:</strong> <span th:text="${meal.strInstructions}"></span></p>
                 <!-- Aquí puedes agregar ingredientes si los agregas al DTO -->
+                <!-- Botón para agregar a favoritos -->
+                <form th:action="@{/favorite/add}" method="post" th:object="${meal}">
+                    <input type="hidden" th:field="*{idMeal}" />
+                    <input type="hidden" th:field="*{strMeal}" />
+                    <input type="hidden" th:field="*{strCategory}" />
+                    <input type="hidden" th:field="*{strMealThumb}" />
+                    <input type="hidden" th:field="*{strArea}" />
+                    <input type="hidden" th:field="*{strTags}" />
+                    <input type="hidden" th:field="*{strInstructions}" />
+                    <button type="submit" class="btn btn-success" id="favoriteBtn">Add to favorite</button>
+                </form>
+                <div th:if="${param.added}">
+                    <script>alert('Congratulations! You added this meal to favorites.');</script>
+                </div>
             </div>
         </div>
     </div>
