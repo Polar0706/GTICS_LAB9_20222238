@@ -18,6 +18,9 @@
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
     </form>
+    <div class="d-flex justify-content-end mb-2">
+        <a href="/favorites" class="btn btn-success">List my favorites</a>
+    </div>
     <div class="row">
         <div th:each="category, iterStat : ${categories}" th:if="${#strings.isEmpty(search)} || ${category.strCategory.toLowerCase().contains(search?.toLowerCase())}" class="col-md-4">
             <div class="card category-card">
