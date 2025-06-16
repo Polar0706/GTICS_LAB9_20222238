@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TELEMEAL - Buscar Comidas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .meal-card { margin-bottom: 30px; }
+        .meal-img { width: 100%; height: 200px; object-fit: cover; }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">TELEMEAL</h2>
+    <form class="mb-3" method="get" th:action="@{/meals}">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" th:value="${search}" placeholder="Buscar comida...">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    <div class="row">
+        <div th:if="${meals == null}">
+            <p class="text-center">Busca una comida por nombre.</p>
+        </div>
+        <div th:if="${meals != null}">
+            <div th:each="meal : ${meals}" class="col-md-4">
+                <div class="card meal-card">
+                    <a th:href="@{'/meals/detail/' + ${meal.idMeal}}">
+                        <img th:src="${meal.strMealThumb}" class="card-img-top meal-img" th:alt="${meal.strMeal}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${meal.strMeal}"></h5>
+                        <p class="card-text" th:text="${meal.strCategory}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
